@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta name="theme-color" content="#090612">
+  <meta name="description"
+        content="AMT FLIX — Asian Drama & Entertainment">
+
+  <title>AMT FLIX</title>
+
+  <!-- Pi Network SDK -->
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ==============================
+       APP LOADING
+  =============================== -->
+  <div id="appLoader" class="app-loader">
+    <div class="loader-logo">AMT</div>
+    <div class="loader-title">AMT FLIX</div>
+    <div class="loader-subtitle">
+      Asian Drama • Entertainment
+    </div>
+    <div class="loader-spinner"></div>
+  </div>
+
+
+  <!-- ==============================
+       LOGIN SCREEN
+  =============================== -->
+  <section id="loginScreen" class="screen login-screen hidden">
+
+    <div class="login-glow"></div>
+
+    <div class="login-card">
+
+      <div class="brand-mark">
+        <span>AMT</span>
+        <small>FLIX</small>
+      </div>
+
+      <h1>AMT FLIX</h1>
+
+      <p class="tagline">
+        Asian Drama • Entertainment • Pi Ecosystem
+      </p>
+
+      <p class="login-description">
+        Watch your favorite Asian stories and earn
+        AMT Watch Rewards as you watch.
+      </p>
+
+      <button id="piLoginBtn" class="pi-login-btn">
+        <span class="pi-symbol">π</span>
+        <span>Sign in with Pi</span>
+      </button>
+
+      <div id="loginStatus" class="login-status"></div>
+
+      <p class="login-note">
+        Your Pi wallet address is requested only with
+        your permission.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       MAIN APP
+  =============================== -->
+  <main id="mainApp" class="main-app hidden">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div class="top-brand">
+        <strong>AMT</strong>
+        <span>FLIX</span>
+      </div>
+
+      <button id="profileBtn" class="profile-button">
+        <span id="profileInitial">P</span>
+      </button>
+
+    </header>
+
+
+    <!-- HOME -->
+    <section id="homePage" class="page active">
+
+      <div class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+          <span class="hero-badge">
+            AMT FLIX ORIGINAL EXPERIENCE
+          </span>
+
+          <h1>
+            WATCH.<br>
+            ENJOY.<br>
+            <span>EARN AMT.</span>
+          </h1>
+
+          <p>
+            Discover Asian drama and entertainment
+            inside the Pi ecosystem.
+          </p>
+
+          <button id="browseBtn" class="primary-btn">
+            Browse Dramas
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- WALLET CARD -->
+      <section class="wallet-card">
+
+        <div class="wallet-header">
+          <div>
+            <small>YOUR AMT WALLET</small>
+            <h2 id="amtBalance">0.00000000 AMT</h2>
+          </div>
+
+          <div class="wallet-icon">₳</div>
+        </div>
+
+        <div class="wallet-info">
+
+          <div>
+            <span>Pi Username</span>
+            <strong id="piUsername">Not connected</strong>
+          </div>
+
+          <div>
+            <span>Pi Wallet</span>
+            <strong id="piWallet">
+              Not connected
+            </strong>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONTINUE WATCHING -->
+      <section class="content-section">
+
+        <div class="section-heading">
+          <h2>Continue Watching</h2>
+          <span>›</span>
+        </div>
+
+        <div id="continueList" class="poster-row">
+
+          <div class="empty-content">
+            Start watching a drama to see it here.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CATEGORIES -->
+      <section class="content-section">
+
+        <div class="section-heading">
+          <h2>Explore</h2>
+        </div>
+
+        <div class="category-grid">
+
+          <button class="category-card chinese">
+            <span>🇨🇳</span>
+            <strong>Chinese Drama</strong>
+          </button>
+
+          <button class="category-card korean">
+            <span>🇰🇷</span>
+            <strong>Korean Drama</strong>
+          </button>
+
+          <button class="category-card asian">
+            <span>🌏</span>
+            <strong>Asian Indie</strong>
+          </button>
+
+          <button class="category-card originals">
+            <span>⭐</span>
+            <strong>AMT Originals</strong>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- FEATURED -->
+      <section class="content-section">
+
+        <div class="section-heading">
+          <h2>Featured</h2>
+          <span>See all</span>
+        </div>
+
+        <div id="dramaGrid" class="drama-grid">
+
+          <!-- Drama cards will be inserted by app.js -->
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- WALLET PAGE -->
+    <section id="walletPage" class="page">
+
+      <div class="page-title">
+        <span>AMT</span>
+        <h1>Wallet</h1>
+      </div>
+
+      <div class="big-balance-card">
+
+        <small>AVAILABLE AMT</small>
+
+        <strong id="walletPageBalance">
+          0.00000000
+        </strong>
+
+        <span>AMT</span>
+
+      </div>
+
+      <div class="reward-card">
+
+        <div>
+          <span>Watch Rewards</span>
+          <strong id="watchRewards">
+            +0.00000000 AMT
+          </strong>
+        </div>
+
+        <div class="reward-icon">
+          🎁
+        </div>
+
+      </div>
+
+      <div class="wallet-address-card">
+
+        <small>CONNECTED PI WALLET</small>
+
+        <div id="fullWalletAddress">
+          Not connected
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE PAGE -->
+    <section id="profilePage" class="page">
+
+      <div class="page-title">
+        <span>AMT</span>
+        <h1>Profile</h1>
+      </div>
+
+      <div class="profile-card">
+
+        <div id="profileAvatar" class="profile-avatar">
+          P
+        </div>
+
+        <h2 id="profileUsername">
+          Pioneer
+        </h2>
+
+        <span id="profileUid">
+          Pi account connected
+        </span>
+
+      </div>
+
+      <div class="profile-list">
+
+        <div class="profile-row">
+          <span>Pi Username</span>
+          <strong id="profilePiUsername">
+            —
+          </strong>
+        </div>
+
+        <div class="profile-row">
+          <span>Wallet</span>
+          <strong id="profileWalletShort">
+            —
+          </strong>
+        </div>
+
+        <div class="profile-row">
+          <span>AMT Balance</span>
+          <strong id="profileAmtBalance">
+            0.00000000 AMT
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+
+      <button class="nav-item active"
+              data-page="homePage">
+        <span>⌂</span>
+        <small>Home</small>
+      </button>
+
+      <button class="nav-item"
+              data-page="walletPage">
+        <span>₳</span>
+        <small>Wallet</small>
+      </button>
+
+      <button class="nav-item"
+              data-page="profilePage">
+        <span>◉</span>
+        <small>Profile</small>
+      </button>
+
+    </nav>
+
+  </main>
+
+
+  <!-- ==============================
+       DRAMA MODAL
+  =============================== -->
+  <div id="dramaModal" class="modal hidden">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-card">
+
+      <button id="closeDramaModal"
+              class="close-modal">
+        ×
+      </button>
+
+      <div id="modalPoster"
+           class="modal-poster">
+      </div>
+
+      <div class="modal-body">
+
+        <span id="modalCategory"
+              class="modal-category">
+          Drama
+        </span>
+
+        <h2 id="modalTitle">
+          Drama
+        </h2>
+
+        <p id="modalDescription">
+          Description
+        </p>
+
+        <button id="watchDramaBtn"
+                class="primary-btn">
+          ▶ Watch Now
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==============================
+       VIDEO PLAYER
+  =============================== -->
+  <div id="videoScreen" class="video-screen hidden">
+
+    <button id="closeVideoBtn"
+            class="video-close">
+      ×
+    </button>
+
+    <video id="dramaVideo"
+           controls
+           playsinline
+           preload="metadata">
+    </video>
+
+    <div class="video-info">
+
+      <h2 id="videoTitle">
+        AMT FLIX
+      </h2>
+
+      <div class="watch-progress">
+
+        <div class="progress-label">
+          <span>Watch Progress</span>
+          <strong id="watchPercent">
+            0%
+          </strong>
+        </div>
+
+        <div class="progress-track">
+          <div id="watchProgressBar"
+               class="progress-bar">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reward-live">
+
+        <span class="reward-dot"></span>
+
+        <span>
+          Watch Rewards Active
+        </span>
+
+        <strong id="sessionReward">
+          +0.00000000 AMT
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
